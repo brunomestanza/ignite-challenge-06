@@ -7,9 +7,14 @@ interface TravelOptionContentProps {
 
 export function TravelOptionContent({ imageSource, title }: TravelOptionContentProps) {
   return (
-    <Flex direction="column" justify="space-between" align="center" height={150}>
+    <Flex
+      align="center"
+      direction="column"
+      justify="space-between"
+      height={150}
+    >
       <Image alt={title} src={imageSource} />
-      <Text fontWeight="semibold" color="gray.800" fontSize="2xl">{title}</Text>
+      <Text color="gray.800" fontSize="2xl" fontWeight="semibold">{title}</Text>
     </Flex>
   );
 };
