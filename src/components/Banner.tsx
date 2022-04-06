@@ -1,4 +1,5 @@
 import { Box, Flex, Heading, Image, Stack, Text } from "@chakra-ui/react";
+import { H1 } from "./Headings/H1";
 
 export function Banner() {
   return (
@@ -18,9 +19,7 @@ export function Banner() {
           py="10"
         >
           <Stack spacing={8}>
-            <Heading color="gray.50" fontSize="5xl" fontWeight="medium">
-              5 Continentes,<br/>infinitas possibilidades.
-            </Heading>
+            <H1>5 Continentes,<br/>infinitas possibilidades.</H1>
             <Text color="gray.200" fontSize="2xl">
               Chegou a hora de tirar do papel a viagem<br/>que você sempre sonhou.
             </Text>
