@@ -8,6 +8,7 @@ export function Header() {
   return (
     <Flex 
       as="header"
+      align="center"
       justifyContent="center"
       maxWidth={1440} 
       mx="auto" 
@@ -16,7 +17,7 @@ export function Header() {
     >
     { asPath !== "/" &&
       <Link href="/" passHref>
-        <ChakraLink alignItems="center" position="absolute" left="0">
+        <ChakraLink position="absolute" left="0">
           <Icon
             as={IoIosArrowBack}
             fontSize={24}

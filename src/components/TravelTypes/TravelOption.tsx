@@ -1,11 +1,11 @@
 import { Flex, Image, Text } from "@chakra-ui/react";
 
-interface TravelOptionContentProps {
+interface TravelOptionProps {
   imageSource: string;
   title: string;
 }
 
-export function TravelOptionContent({ imageSource, title }: TravelOptionContentProps) {
+export function TravelOption({ imageSource, title }: TravelOptionProps) {
   return (
     <Flex
       align="center"
