@@ -1,11 +1,32 @@
-import { Flex, Icon, Image } from "@chakra-ui/react";
+import Link from "next/link";
+import { Flex, Icon, Image, Link as ChakraLink } from "@chakra-ui/react";
 import { IoIosArrowBack } from "react-icons/io";
+import { useRouter } from "next/router";
 
 export function Header() {
+  const { asPath } = useRouter();
   return (
-    <Flex as="header" py="7" maxWidth={1440} mx="auto">
-			{/* <Icon alignSelf="center" fontSize={24} as={IoIosArrowBack} ml="144" /> */}
-			<Image alt="World trip logo" mx="auto" src="/logo.png" />
-    </Flex>
+    <Flex 
+      as="header"
+      justifyContent="center"
+      maxWidth={1440} 
+      mx="auto" 
+      position="relative"
+      py="7"
+    >
+    { asPath !== "/" &&
+      <Link href="/" passHref>
+        <ChakraLink alignItems="center" position="absolute" left="0">
+          <Icon
+            as={IoIosArrowBack}
+            fontSize={24}
+          />
+        </ChakraLink>
+      </Link> }
+    <Image alt="World trip logo" src="/logo.png"/>
+</Flex>
   );
 };
+
+
+
