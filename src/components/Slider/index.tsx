@@ -12,7 +12,7 @@ interface SlidesType {
 }
 
 export function Slider() {
-  const [slides, setSlides] = useState<SlidesType[]>();
+  const [slides, setSlides] = useState<SlidesType[]>([]);
 
   useEffect(() => {
     async function getContinents() {
