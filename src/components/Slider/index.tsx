@@ -1,9 +1,16 @@
 import { Center, Image, Text } from '@chakra-ui/react';
 import Link from 'next/link';
+import { useEffect } from 'react';
 import { Pagination, Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from "swiper/react";
 
 export function Slider() {
+  useEffect(() => {
+    fetch('http://localhost:3000/api/continents')
+    .then(response => response.json())
+    .then(data => console.log(data));
+  }, []);
+
   const item = {
     img: 'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1420&q=80',
     slug: '/',
@@ -25,7 +32,7 @@ export function Slider() {
           position="relative"
           flexDir="column"
           h="450px"
-          mb="4"
+          mb="8"
           overflow="hidden"
           w="100%"
         >
