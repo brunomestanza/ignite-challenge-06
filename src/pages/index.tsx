@@ -18,6 +18,8 @@ createServer({
         },
       ];
     });
+    this.namespace = "";
+    this.passthrough();
   },
 });
 

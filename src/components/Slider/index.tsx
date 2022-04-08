@@ -1,14 +1,26 @@
 import { Center, Image, Text } from '@chakra-ui/react';
 import Link from 'next/link';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Pagination, Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from "swiper/react";
 
+interface SlidesType {
+  img: string;
+  slug: string;
+  title: string;
+  subtitle: string;
+}
+
 export function Slider() {
+  const [slides, setSlides] = useState<SlidesType[]>();
+
   useEffect(() => {
-    fetch('http://localhost:3000/api/continents')
-    .then(response => response.json())
-    .then(data => console.log(data));
+    async function getContinents() {
+      await fetch('http://localhost:3000/api/continents')
+      .then(response => response.json())
+      .then(data => setSlides(data));
+    }
+    getContinents();
   }, []);
 
   const item = {
@@ -27,50 +39,54 @@ export function Slider() {
       pagination
       cssMode
     >
-      <SwiperSlide>
-        <Center
-          position="relative"
-          flexDir="column"
-          h="450px"
-          mb="8"
-          overflow="hidden"
-          w="100%"
-        >
-          <Image
-            alt={`Continente da ${item.title}`}
-            bgAttachment="fixed"
-            bgSize="cover"
-            bgRepeat="no-repeat"
-            filter={'brightness(0.3)'}
-            src={item.img}
-          />
-          <Link href={`/continent/${item.slug}`} passHref>
+      {slides.map(slide => {
+        return (
+          <SwiperSlide key={slide.title}>
             <Center
+              position="relative"
               flexDir="column"
-              position="absolute"
-              top="50%"
-              transform={['translateY(-50%)']}
-              transition={'filter 0.2s'}
-              _hover={{ filter: 'brightness(0.8)' }}
+              h="450px"
+              mb="8"
+              overflow="hidden"
+              w="100%"
             >
-              <Text
-                color="gray.50"
-                fontSize={['2xl', '5xl']}
-                fontWeight="bold"
-              >
-                {item.title}
-              </Text>
-              <Text
-                color="gray.200"
-                fontWeight="medium"
-                fontSize={['sm', '2xl']}
-              >
-                {item.subtitle}
-              </Text>
+              <Image
+                alt={`Continente da ${item.title}`}
+                bgAttachment="fixed"
+                bgSize="cover"
+                bgRepeat="no-repeat"
+                filter={'brightness(0.3)'}
+                src={item.img}
+              />
+              <Link href={`/continent/${item.slug}`} passHref>
+                <Center
+                  flexDir="column"
+                  position="absolute"
+                  top="50%"
+                  transform={['translateY(-50%)']}
+                  transition={'filter 0.2s'}
+                  _hover={{ filter: 'brightness(0.8)' }}
+                >
+                  <Text
+                    color="gray.50"
+                    fontSize={['2xl', '5xl']}
+                    fontWeight="bold"
+                  >
+                    {item.title}
+                  </Text>
+                  <Text
+                    color="gray.200"
+                    fontWeight="medium"
+                    fontSize={['sm', '2xl']}
+                  >
+                    {item.subtitle}
+                  </Text>
+                </Center>
+              </Link>
             </Center>
-          </Link>
-        </Center>
-      </SwiperSlide>
+          </SwiperSlide>
+        )
+      })}
     </Swiper>
   );
 };
